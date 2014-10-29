@@ -1,0 +1,21 @@
+<table>
+<%@cat.attribute_names.each do |column|%>
+<tr>
+  <th><%=column%></th>
+  <td><%=@cat.send(column)%></td>
+</tr>
+<%end%>
+</table>
+<ul>
+  <li><a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a></li>
+  <li><a href="<%= cats_url %>">Index</a></li>
+</ul>
+
+<ul>
+<%@requests.each do |request|%>
+<li>Start date: <%=request.start_date%></li>
+<li>End date: <%=request.end_date%></li>
+<li>Status: <%=request.status%></li>
+<br>
+<%end%>
+<ul>
