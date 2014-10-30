@@ -45,7 +45,7 @@ class CatRentalRequest < ActiveRecord::Base
     approved_requests
   end
   
-  def approve 
+  def approve! 
     if overlapping_approved_requests.empty?
       self.status = "APPROVED"
       self.save
@@ -56,6 +56,12 @@ class CatRentalRequest < ActiveRecord::Base
       end
     end
   end
+  
+  def deny!
+    self.status = 'DENIED'
+    self.save
+  end
+    
   
   
 end

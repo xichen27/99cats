@@ -1,6 +1,10 @@
 <h1>Cat Request Form</h1>
 
 <form action="<%=cat_rental_requests_url%>" method="POST">
+  <input
+  type="hidden"
+  name="authenticity_token"
+  value="<%= form_authenticity_token %>">
 <label for="cat_option">Select a Cat:</label><br>
 <select name="request[cat_id]" id="cat_option">
   <%@cats.each do |cat|%>
@@ -22,3 +26,4 @@
  <br>
  <input type="submit" value="Rent a Cat!">
 </form>
+

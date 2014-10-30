@@ -1,4 +1,6 @@
 class CatsController < ApplicationController
+  before_action :redirect_if_not_authorized, only: [:edit, :update]
+
   def index
     @cats = Cat.all
     render :index
@@ -14,7 +16,7 @@ class CatsController < ApplicationController
   end
   
   def create
-    @cat = Cat.new(cat_params)
+    @cat = current_user.cats.new(cat_params)
     if @cat.save
       redirect_to cat_url(@cat)
     else
@@ -34,6 +36,12 @@ class CatsController < ApplicationController
   def edit
     @cat = Cat.find(params[:id])
     render :edit
+  end
+  
+  def redirect_if_not_authorized
+    if @cat.user_id != current_user.id
+      redirect_to cats_url
+    end
   end
   
   private

@@ -12,6 +12,16 @@ class CatRentalRequestsController < ApplicationController
     end
   end
   
+  def approve
+    @cat = Cat.find(params[:id])
+    @cat.approve!
+  end
+  
+  def deny
+    @cat = Cat.find(params[:id])
+    @cat.deny!
+  end
+  
   private
   def request_params
     params[:request].permit(:start_date, :end_date, :cat_id)

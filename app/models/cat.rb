@@ -36,5 +36,11 @@ class Cat < ActiveRecord::Base
     (Date.today - birth_day).to_i/365
   end
   
+  belongs_to(
+    :owner,
+    class_name: 'User',
+    foreign_key: :user_id,
+    primary_key: :id
+  )
   
 end
